@@ -22,4 +22,8 @@ describe('UserRepo', function() {
     expect(userRepo.createNewUser('Steve Rumizen').id).to.equal(101);
     expect(userRepo.data.users.length).to.equal(101);
   });
+
+  it('Should be able to return a filtered array of users given one or more letters', function () {
+    expect(userRepo.returnFilteredUsers('Jo').length).to.equal(2);
+  });
 });

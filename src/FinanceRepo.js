@@ -3,7 +3,6 @@ class FinanceRepo {
     this.roomData = roomData;
     this.bookingData = bookingData;
     this.roomServiceData = roomServiceData;
-    this.financeData = {};
   }
 
   returnTotalRoomServiceEarned(givenDate) {
