@@ -4,7 +4,7 @@ import './images/home.svg';
 import './images/banknote.svg';
 import './images/bed.svg';
 import './images/user.svg';
-import './images/view.svg';
+import './images/book.svg';
 import domUpdates from './domUpdates.js';
 import fetch from 'cross-fetch';
 import FinanceRepo from './FinanceRepo';

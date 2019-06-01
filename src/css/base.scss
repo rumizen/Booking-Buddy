@@ -7,6 +7,13 @@ $secondary-color: #3AD455;
 $tertiary-background: #204DAE;
 $primary-background: #ebebeb;
 $secondary-background: white;
+$complimentary-color: #FFCE6D;
+$opposite-color: #FF786D;
+
+@mixin buttonHover {
+  transform: scale(1.01);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1), 0 12px 40px 0 rgba(0, 0, 0, 0.09);
+}
 
 *{
   box-sizing: border-box;
@@ -24,8 +31,10 @@ body{
 header{
   align-items: center;
   display: flex;
+  height: 150px;;
   justify-content: space-around;
   margin: 0;
+  padding: 3%;
   div{
     border-radius: 6px;
     background-color: $tab-color;
@@ -38,12 +47,25 @@ header{
 }
 
 h1{
-  color: #0F989E;
-  font-size: 3.5rem;
-  font-weight: 700;
+  display: flex;
+  color: $tertiary-background;
+  font-size: 4rem;
+  font-weight: 100;
+  transform:scale(1.05,1);
+  svg{
+      height: 90px;
+      bottom: 7px;
+      left: 192px;
+      position: absolute;
+      z-index: 0;
+      fill: $tertiary-background;
+    }
   span{
+    font-family: 'Baloo Da', cursive;
     font-size: 2.5rem;
-    font-weight: 100;
+    top: 15px;
+    position: relative;
+    z-index: 100;
   }
 }
 
@@ -117,31 +139,37 @@ ul.tabs li.current{
   padding: 20px;
   article{
     background-color: $secondary-background;
-    border-radius: 6px;
+    border-radius: 2px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 7px;
-    height: 32%;
+    margin: 20px;
+    height: 31%;
     .money-text{
-    color: $secondary-color;
+      color: $secondary-color;
     }
     h3{
       color: $secondary-font-color;
-      font-size: 4em;
+      font-size: 2.7em;
       font-weight: 100;
       margin: 15px;
       padding: 0;
     }
     p{
-      color: $tertiary-background;
+      color: $opposite-color;
       font-size: 6em;
       font-weight: 400;
       margin: 0;
       padding: 0;
     }
+  }
+}
+
+article.rooms-available{
+  P{
+      color: $complimentary-color;
   }
 }
 
@@ -161,7 +189,7 @@ ul.tabs li.current{
 
 article.orders-total{
   background-color: $secondary-background;
-  border-radius: 6px;
+  border-radius: 2px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
   color: $secondary-font-color;
   font-size: 2em;
@@ -183,12 +211,17 @@ article.date-select{
     margin-right: 20px;
   }
   select{
-	  appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
     box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
-	  border-radius: 6px;
+	  border-radius: 2px;
 	  background-color: #fff;
     font-size: 2em;
     height: 70px;
+    &:hover{
+      @include buttonHover;
+    }
     option{
       margin:auto;
     }
@@ -215,6 +248,12 @@ article.order-history{
     min-height: 80px;
     margin: 9px 20px;
     width: 90%;
+    .order-history-date{
+      color: $tertiary-background;
+    }
+    .order-history-amount{
+      color: #00A81D;
+    }
   }
 }
 
@@ -229,14 +268,14 @@ article.order-history{
   padding: 20px;
   article{
     background-color: $secondary-background;
-    border-radius: 6px;
+    border-radius: 2px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 7px;
-    height: 48%;
+    margin: 20px;
+    height: 45%;
     h3{
       color: $secondary-font-color;
       font-size: 4em;
@@ -263,7 +302,17 @@ article.room-type-select{
   }
 }
 
+article.most-popular-date{
+  p{
+    color: $opposite-color;
+  }
+}
 
+article.most-available-date{
+  p{
+    color: $complimentary-color;
+  }
+}
 //-----------------Customer------------------//
 
 
@@ -284,16 +333,21 @@ article.room-type-select{
     }
     button{
       border: 0;
-      border-radius: 6px;
-      background: $primary-background;
+      border-radius: 2px;
+      background: $secondary-font-color;
+      color: white;
       font-size: 2.1rem;
       line-height: 1.2;
       white-space: nowrap;
       text-decoration: none;
       padding: 0.25rem 0.5rem;
-      margin: 0.25rem;
+      margin: 0;
       cursor: pointer;
       width: 15%;
+      &:hover{
+        transform: scale(1.01);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1), 0 12px 40px 0 rgba(0, 0, 0, 0.09);
+      }
     }
   }
 }
@@ -301,8 +355,8 @@ article.room-type-select{
 .customer-search{
   display: flex;
   align-items: center;
-  border-radius: 6px;
-  background-color: $secondary-background;
+  border-radius: 2px;
+  background-color: $primary-background;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
   margin: 35px 0px;
   padding: 10px;
@@ -311,7 +365,7 @@ article.room-type-select{
 
 #create-new-guest-btn{
   display: inline-block;
-  border-radius: 6px;
+  border-radius: 2px;
   background-color: $secondary-color;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
   border: none;
