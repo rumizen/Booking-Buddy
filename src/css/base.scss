@@ -43,7 +43,48 @@ body{
   }
 }
 
-//--------------------Header--------------------//
+#new-customer-splash{
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1), 0 24px 80px 0 rgba(0, 0, 0, 0.09);
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 25vh;
+  z-index: 100;
+  h2{
+    font-size: 3em;
+    color: $tertiary-background;
+    text-align: center;
+  }
+  form{
+    color: $secondary-font-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    label{
+      font-size: 2em;
+      font-weight: 100;
+    }
+    input{
+      padding: 20px;
+      margin: 15px;
+      width: 50%;
+    }
+    button{
+      background-color: $secondary-font-color;
+      border: none;
+      border-radius: 2px;
+      padding: 20px;
+      width: 50%;
+    }
+  }
+}
+
+/*--------------------Header--------------------*/
 
 
 
@@ -51,18 +92,22 @@ header{
   align-items: center;
   display: flex;
   height: 150px;;
-  justify-content: space-around;
-  margin: 0;
-  padding: 3%;
-  width: 95%;
-  div{
-    border-radius: 6px;
-    background-color: $tab-color;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding: .8em;
-    h2{
-      font-size: 1rem;
-      margin: 0;
+  justify-content: space-between;
+  margin: 1% 3.9%;
+  .header-info-boxes{
+    display: flex;
+    justify-content: space-around;
+    div{
+      border-radius: 6px;
+      background-color: $tab-color;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      margin-left: 30px;
+      padding: .8em;
+      h2{
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin: 0;
+      }
     }
   }
 }
@@ -90,9 +135,37 @@ h1{
   }
 }
 
+@keyframes fadeInOut {
+    0% {
+        transform: scale(0);
+        opacity: 0.1;
+    }
+    25%{
+      transform: scale(1);
+      opacity: .3;
+    }
+    50% {
+        transform: scale(3);
+        opacity: .5;
+    }
+    75% {
+      transform: scale(2);
+      opacity: .7;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+}
 
+.scale-animation{
+  animation-name: fadeInOut;
+  animation-duration: .75s;
+  animation-timing-function: linear;
+  transition: all .75s ease-in-out;
+}
 
-//--------------------Tabs--------------------//
+/*--------------------Tabs--------------------*/
 
 
 
@@ -152,12 +225,12 @@ ul.tabs li.current{
 }
 
 
-//-----------------Main------------------//
+/*-----------------Main------------------*/
 
 
 
 .main{
-  padding: 20px;
+  padding: 10px 10px 0px 10px;
   article{
     background-color: $secondary-background;
     border-radius: 2px;
@@ -195,7 +268,7 @@ article.rooms-available{
 }
 
 
-//-----------------Orders------------------//
+/*-----------------Orders------------------*/
 
 
 
@@ -215,7 +288,7 @@ article.rooms-available{
   flex-direction: column;
   .no-info-message{
     font-size: 2.5rem;
-    color: $opposite-color;
+    color: white;
     margin: 200px 30px;
   }
 }
@@ -251,12 +324,13 @@ article.date-search{
     margin: 20px 10px;
     width: 100%;
     input{
-      height: 3rem;
-      width: 40%;
-    }
-    input::placeholder{
-      color: lightgray;
-      font-size: 1.2em;
+      background-color: white;
+      border-radius: 2px;
+      border: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      min-height: 3rem;
+      min-width: 25%
     }
     button{
       border: 0;
@@ -316,7 +390,7 @@ article.order-history{
     font-size: 2em;
     justify-content: space-around;
     align-items: center;
-    min-height: 80px;
+    height: 80px;
     margin: 9px 20px;
     width: 90%;
     .order-history-date{
@@ -330,7 +404,7 @@ article.order-history{
 
 
 
-//-----------------Rooms------------------//
+/*-----------------Rooms------------------*/
 
 
 
@@ -346,7 +420,7 @@ article.order-history{
     align-items: center;
     justify-content: center;
     margin: 20px;
-    height: 45%;
+    height: 48%;
     h3{
       color: $secondary-font-color;
       font-size: 4em;
@@ -384,7 +458,7 @@ article.most-available-date{
     color: $complimentary-color;
   }
 }
-//-----------------Customer------------------//
+/*-----------------Customer------------------*/
 
 
 
@@ -400,25 +474,7 @@ article.most-available-date{
     width: 100%;
     input{
       height: 3rem;
-      width: 40%;
-    }
-    button{
-      border: 0;
-      border-radius: 2px;
-      background: $secondary-font-color;
-      color: white;
-      font-size: 2.1rem;
-      line-height: 1.2;
-      white-space: nowrap;
-      text-decoration: none;
-      padding: 0.25rem 0.5rem;
-      margin: 0;
-      cursor: pointer;
-      width: 15%;
-      &:hover{
-        transform: scale(1.01);
-        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1), 0 12px 40px 0 rgba(0, 0, 0, 0.09);
-      }
+      width: 50%;
     }
   }
 }
@@ -488,6 +544,7 @@ article.customer-user-results{
     font-size: 2em;
     justify-content: space-between;
     align-items: center;
+    height: 80px;
     min-height: 80px;
     margin: 9px 20px;
     padding: 0px 40px;
@@ -510,7 +567,7 @@ article.customer-user-results{
 }
 
 
-//-----------------Footer------------------//
+/*-----------------Footer------------------*/
 
 
 
@@ -524,16 +581,134 @@ footer{
 
 
 
-//-----------------Breakpoints------------------//
+/*-----------------Breakpoints------------------*/
 
-@media only screen and (min-width: 750px) {
+
+
+@media only screen and (min-width: 450px) {
+  .tab-content{
+    background: $tab-color;
+    height: 100vh;
+  }
+
+  #new-customer-splash{
+    border: solid 1px $secondary-font-color;
+    padding-top: 7%;
+    height: 50vh;
+    form{
+      label{
+        font-size: 2em;
+        font-weight: 100;
+      }
+    }
+  }
+
+}
+
+@media only screen and (min-width: 1000px) {
   ul.tabs li{
     span{
-      // display: flex;
+      display: flex;
     }
     img{
       height: 40px;
       width: 40px;
+    }
+  }
+
+  .container{
+    margin: 0 auto;
+    height: 100vh;
+    padding: 0px 10px;
+    width: 95%;
+  }
+
+  .tab-content{
+    background: $tab-color;
+    height: 100vh;
+  }
+
+  .main{
+    article{
+      h3{
+        font-size: 1.5rem;
+      }
+      p{
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  article.date-search{
+    width: 50%;
+    form{
+      justify-content: center;
+      label{
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin-right: 30px;
+      }
+      input{
+        background-color: white;
+        border-radius: 2px;
+        border: none;
+        outline: none;
+        margin-right: 30px;
+      }
+    }
+  }
+
+  .order-history{
+    .no-info-message{
+      font-size: 1.5rem;
+      color: white;
+      margin: 200px 30px;
+    }
+  }
+
+  .rooms{
+    article{
+      h3{
+        font-size: 1.5em;
+        font-weight: 100;
+      }
+      p{
+        font-size: 2.5em;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .customer{
+    padding: 20px;
+  }
+
+  .search-bar{
+    margin: 35px 0px;
+    width: 50%;
+    label{
+      font-size: 1.5rem;
+    }
+    input{
+      border: none;
+      outline: none;
+      width: 40%;
+    }
+  }
+
+  #create-new-guest-btn{
+    width: 50%;
+  }
+
+  #new-customer-splash{
+    border: solid 1px $secondary-font-color;
+    padding-top: 7%;
+    height: 70vh;
+    form{
+      label{
+        font-size: 2em;
+        font-weight: 100;
+      }
     }
   }
 }

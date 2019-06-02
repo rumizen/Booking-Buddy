@@ -83,4 +83,25 @@ export default {
       `);
     });
   },
+
+
+
+  popSelectedCustomer(name) {
+    $('#header-selected-customer').text(name);
+    $('.customer-user-results').html('');
+    $('#customer-search').val('');
+    this.customerAnimation()
+  },
+
+  customerAnimation() {
+    $('#header-customer-box').addClass('scale-animation');
+    setTimeout(() => $('#header-customer-box').removeClass('scale-animation'), 2000);
+  },
+
+  toggleNewCustomerSplash() {
+    $('#new-customer-splash').toggle();
+    $('#new-customer-input').val('');
+  },
+
+
 }

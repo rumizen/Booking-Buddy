@@ -5,6 +5,14 @@
     <link href="https://fonts.googleapis.com/css?family=Baloo+Da&display=swap" rel="stylesheet">
   </head>
   <body>
+    <div hidden id="new-customer-splash">
+      <h2>New Guest</h2>
+      <form class="new-customer-splash-form">
+        <label>Enter name: </label>
+        <input id="new-customer-input" type="text" placeholder="Guest name"/>
+        <button id="new-customer-splash-btn">Create</button>
+      </form>
+    </div>
     <header>
       <h1>BOOKING<span>BUDDY</span><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
         y="0px" width="333.433px" height="333.433px" viewBox="0 0 333.433 333.433"
@@ -63,11 +71,13 @@
         <g>
         </g>
       </svg></h1>
-      <div>
-        <h2 id="header-date"></h2>
-      </div>
-      <div>
-        <h2>Customer Name</h2>
+      <div class="header-info-boxes">
+        <div>
+          <h2 id="header-date"></h2>
+        </div>
+        <div id="header-customer-box">
+          <h2 id="header-selected-customer">Customer Name</h2>
+        </div>
       </div>
     </header>
     <div class="container">   
@@ -99,7 +109,7 @@
         <article class="date-search search-bar">
           <form>
             <label for="orders-by-date">See orders for: </label>
-            <input id="orders-by-date" type="date" name="orders-by-date" placeholder="Choose date">
+            <input id="orders-by-date" type="date" name="orders-by-date">
             <button id="date-search-button" class="search-button">Go</button>
           </form>
         </article>
@@ -131,7 +141,6 @@
           <form>
             <label for="customer-search">Search Customers: </label>
             <input type="text" name="customer-search" id="customer-search"/>
-            <button class="search-button" id="customer-search-button">Go</button>
           </form>
         </article>
         <button id="create-new-guest-btn"><span> New Guest</span></button>

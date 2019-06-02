@@ -93,7 +93,26 @@ $( document ).ready(function() {
       };
     };
 
+    function selectCustomer(e) {
+      if ($(e.target).hasClass('append-block')) {
+        domUpdates.popSelectedCustomer($(e.target).find('.append-block-left').text());
+      }
+    }
+
+    function createNewCustomer(e) {
+      e.preventDefault();
+      const newGuest = userRepo.createNewUser($('#new-customer-input').val());
+      domUpdates.popSelectedCustomer(newGuest.name);
+      domUpdates.toggleNewCustomerSplash();
+    }
+
     $('#customer-search').on('keyup', returnCustomerSearch);
+
+    $('.customer-user-results').click(selectCustomer);
+
+    $('#create-new-guest-btn').click(domUpdates.toggleNewCustomerSplash);
+
+    $('#new-customer-splash-btn').click(createNewCustomer);
 
   }, 500);
 });
