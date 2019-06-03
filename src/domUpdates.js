@@ -86,11 +86,80 @@ export default {
 
 
 
-  popSelectedCustomer(name) {
-    $('#header-selected-customer').text(name);
+  popSelectedCustomer(newGuest, roomService, booking, date) {
+    $('#header-selected-customer').text(newGuest.name);
     $('.customer-user-results').html('');
     $('#customer-search').val('');
-    this.customerAnimation()
+    this.customerAnimation();
+    this.toggleCustomerTabs(roomService, booking, date);
+  },
+
+  toggleCustomerTabs(roomService, booking, date) {
+    $('.rooms').replaceWith(`
+    <section id="tab-3" class="tab-content rooms-customer">
+      <div class="rooms-customer-div">
+        <article class="rooms-customer-article">
+          <h3>Guest booking history</h3>
+          <p hidden id="no-booking-message">No booking history</p>
+          <div class="rooms-customer-booking-history">
+          </div>
+          <div class="rooms-customer-book-btn">
+            <p hidden id="rooms-customer-booked-message">Guest has a booking today!</p>
+            <button id="rooms-customer-book-btn">New Booking</button>
+          </div>
+        </article>
+      <div>
+    </section>
+    `);
+    $('.orders').replaceWith(`
+    <div class="orders-customer-div">
+      <section id="tab-2" class="tab-content orders-customer">
+        <article class="orders-customer-history">
+        <h3>Order History</h3>
+        </article>   
+        <article class="orders-customer-daily-total">
+          <form>
+            <label for="room-service-by-date">Total spent for:</label>
+            <input type="date" id="room-service-by-date"/>
+            <button>Go</button>
+          </form>
+        </article>  
+        <article class="orders-customer-alltime-total">
+          <h3>Guest Total</h3>
+          <p>${roomService.returnAllTimeTotalSpent()}</p>
+        </article>  
+      </section>
+    </div>
+    `);
+    this.popBookingHistory(booking);
+    this.checkNewBookingBtn(booking, date);
+  },
+
+  popBookingHistory(booking) {
+    $('.rooms-customer-booking-history').html('');
+    const bookingHist = booking.returnAllBookings();
+    if (bookingHist.length > 0) {
+      bookingHist.forEach(booking => {
+        $('.rooms-customer-booking-history').prepend(`
+          <div class="guest-booking append-block">
+            <p>Room: <span class="append-block-left">${booking.roomNumber}</span></p>
+            <p>Date: <span class="append-block-right">${booking.date}</span></p>
+          </div>
+        `);
+      });
+    } else {
+      $('#no-booking-message').toggle();
+    }
+  },
+
+  checkNewBookingBtn(booking, date) {
+    const bookedToday = booking.returnBookingforDate(date);
+    if (bookedToday !== undefined) {
+      $('#rooms-customer-booked-message').toggle();
+      $('#rooms-customer-book-btn').prop('disabled', true);
+    } else {
+      $('#rooms-customer-book-btn').prop('disabled', false);
+    }
   },
 
   customerAnimation() {
@@ -99,9 +168,11 @@ export default {
   },
 
   toggleNewCustomerSplash() {
-    $('#new-customer-splash').toggle();
+    $('#new-customer-splash').toggle('fast');
     $('#new-customer-input').val('');
   },
+
+
 
 
 }

@@ -14,5 +14,5 @@ class RoomServiceRepo {
     return this.data.roomServices.filter(day => day.date === givenDate);
   }
 }
-
+ 
 export default RoomServiceRepo;

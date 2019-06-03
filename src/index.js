@@ -69,7 +69,7 @@ $( document ).ready(function() {
     })
    
     function returnToday() {
-      return new Date().toLocaleDateString('en-GB')
+      return new Date().toLocaleDateString('en-GB');
     }
 
     domUpdates.popDate(returnToday());
@@ -95,15 +95,26 @@ $( document ).ready(function() {
 
     function selectCustomer(e) {
       if ($(e.target).hasClass('append-block')) {
-        domUpdates.popSelectedCustomer($(e.target).find('.append-block-left').text());
+        const name = $(e.target).find('.append-block-left').text();
+        const guest = userRepo.returnUser(name);
+        const roomService = roomServiceRepo.returnUserRoomService(returnGuestId(name));
+        const booking = bookingRepo.returnBooking(returnGuestId(name));
+        domUpdates.popSelectedCustomer(guest, roomService, booking, returnToday());
       }
     }
 
     function createNewCustomer(e) {
       e.preventDefault();
-      const newGuest = userRepo.createNewUser($('#new-customer-input').val());
-      domUpdates.popSelectedCustomer(newGuest.name);
+      const name = $('#new-customer-input').val();
+      const newGuest = userRepo.createNewUser(name);
+      const roomService = roomServiceRepo.returnUserRoomService(returnGuestId(name));
+      const booking = bookingRepo.returnBooking(returnGuestId(name));
+      domUpdates.popSelectedCustomer(newGuest, roomService, booking, returnToday());
       domUpdates.toggleNewCustomerSplash();
+    }
+
+    function returnGuestId(name) {
+      return userRepo.returnUser(name).id;
     }
 
     $('#customer-search').on('keyup', returnCustomerSearch);
@@ -113,6 +124,8 @@ $( document ).ready(function() {
     $('#create-new-guest-btn').click(domUpdates.toggleNewCustomerSplash);
 
     $('#new-customer-splash-btn').click(createNewCustomer);
+
+    
 
   }, 500);
 });

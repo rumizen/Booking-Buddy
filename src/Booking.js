@@ -6,6 +6,10 @@ class Booking {
   returnAllBookings() {
     return this.data;
   }
+
+  returnBookingforDate(givenDate) {
+    return this.data.find(booking => booking.date === givenDate);
+  }
 }
 
-export default Booking;
+export default Booking; 

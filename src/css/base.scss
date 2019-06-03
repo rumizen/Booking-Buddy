@@ -12,7 +12,7 @@ $opposite-color: #FF786D;
 
 @mixin buttonHover {
   transform: scale(1.01);
-        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1), 0 12px 40px 0 rgba(0, 0, 0, 0.09);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1), 0 12px 40px 0 rgba(0, 0, 0, 0.09);
 }
 
 *{
@@ -110,6 +110,10 @@ header{
       }
     }
   }
+}
+
+#header-customer-box{
+  background-color: $secondary-color;
 }
 
 h1{
@@ -438,15 +442,6 @@ article.order-history{
   }
 }
 
-article.room-type-select{
-  display: none;
-  flex-direction: row;
-  select{
-    margin-left: 30px;
-    height: 20px;
-  }
-}
-
 article.most-popular-date{
   p{
     color: $opposite-color;
@@ -458,6 +453,132 @@ article.most-available-date{
     color: $complimentary-color;
   }
 }
+
+
+/*-----------------Rooms-Customer------------------*/
+
+.rooms-customer-div{
+  display: flex;
+  justify-content: center;
+}
+
+.rooms-customer-article{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0px;
+  width: 95%;
+  h3{
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
+    border-radius: 2px;
+    color: $secondary-font-color;
+    font-size: 2.5rem;
+    font-weight: 100;
+    margin: 0;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+  }
+  p{
+    font-size: 2rem;
+    // color: white;
+    margin-top: 30px;
+    font-weight: 100;
+  }
+  .rooms-customer-booking-history{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    height: 400px;
+    padding: 30px;
+    width: 100%;
+    overflow-y: scroll;
+    div{
+      border-radius: 6px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+      background-color: $primary-background;
+      color: $secondary-font-color;
+      display: flex;
+      font-size: 2em;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+      min-height: 80px;
+      margin: 9px 20px;
+      padding: 0px 40px;
+      width: 90%;
+      .append-block-left{
+        color: $tertiary-background;
+      }
+      .append-block-right{
+        color: $tertiary-background;
+      }
+    }
+  }
+  .rooms-customer-book-btn{
+    margin-top: 50px;
+    text-align: center;
+    width: 80%;
+    button{
+      display: inline-block;
+      border-radius: 2px;
+      background-color: $secondary-color;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
+      border: none;
+      text-align: center;
+      font-size: 28px;
+      padding: 20px;
+      width: 93%;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 20px 0px;
+      span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;  
+      &:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+        }
+      }
+    }
+  }
+}
+
+#rooms-customer-book-btn:hover span {
+  padding-right: 25px;
+}
+
+#rooms-customer-book-btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.room-type-select{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 2px;
+  background-color: $primary-background;
+  width: 80%;
+  select{
+    height: 40px;
+  }
+}
+
+
+
+
+
 /*-----------------Customer------------------*/
 
 
