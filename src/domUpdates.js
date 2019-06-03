@@ -112,11 +112,18 @@ export default {
     </section>
     `);
     $('.orders').replaceWith(`
-    <div class="orders-customer-div">
-      <section id="tab-2" class="tab-content orders-customer">
+    <section id="tab-2" class="tab-content orders-customer">
+      <div class="orders-customer-div">
         <article class="orders-customer-history">
-        <h3>Order History</h3>
-        </article>   
+          <h3>Order History</h3>
+        </article>  
+        <article class="order-history-box">
+          <p hidden id="no-room-service-message">No room service history</p>
+        </article>
+        <article class="orders-customer-alltime-total">
+          <h3>Guest Total</h3>
+          <p>$${roomService.returnAllTimeTotalSpent()}</p>
+        </article>  
         <article class="orders-customer-daily-total">
           <form>
             <label for="room-service-by-date">Total spent for:</label>
@@ -124,13 +131,10 @@ export default {
             <button>Go</button>
           </form>
         </article>  
-        <article class="orders-customer-alltime-total">
-          <h3>Guest Total</h3>
-          <p>${roomService.returnAllTimeTotalSpent()}</p>
-        </article>  
-      </section>
-    </div>
+      </div>
+    </section>
     `);
+    this.popRoomServiceHistory(roomService);
     this.popBookingHistory(booking);
     this.checkNewBookingBtn(booking, date);
   },
@@ -149,6 +153,23 @@ export default {
       });
     } else {
       $('#no-booking-message').toggle();
+    }
+  },
+
+  popRoomServiceHistory(roomService) {
+    $('.order-history-box').html('');
+    const roomServiceHist = roomService.returnAllRoomServices();
+    if (roomServiceHist.length > 0) {
+      roomServiceHist.forEach(roomService => {
+        $('.order-history-box').prepend(`
+          <div class="guest-room-service append-block">
+            <p>Date: <span class="append-block-left">${roomService.date}</span></p>
+            <p>Cost: <span class="append-block-right">${roomService.totalCost}</span></p>
+          </div>
+        `);
+      });
+    } else {
+      $('#no-room-service-message').toggle();
     }
   },
 

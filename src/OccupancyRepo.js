@@ -22,7 +22,7 @@ class OccupancyRepo {
   returnAvailableRooms(givenDate) {
     this.assignOccupancyDataset();
     return this.occupancyData.occupancies.reduce((final, room) => {
-      if (room.datesBooked && !room.datesBooked.includes(givenDate)) {
+      if (!room.datesBooked || !room.datesBooked.includes(givenDate)) {
         final.push(room);
       }
       return final;
