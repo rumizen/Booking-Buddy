@@ -22,15 +22,15 @@ describe('OccupancyRepo', function () {
   });
 
   it('Should be able to return total available rooms by date', function() {
-    expect(occupancyRepo.returnAvailableRooms('22/10/2019').length).to.equal(117);
+    expect(occupancyRepo.returnAvailableRooms('22/10/2019').length).to.equal(199);
   });
 
   it('Should be able to return the percentage of occupied rooms given a date', function () {
-    expect(occupancyRepo.returnPercentRoomsOccupied('22/10/2019')).to.equal(41.5);
+    expect(occupancyRepo.returnPercentRoomsOccupied('22/10/2019')).to.equal(0.5);
   });
 
   it('Should be able to return all rooms available for a given date of a given type', function () {
-    expect(occupancyRepo.returnAvailableRoomsByType('22/10/2019', 'single room').length).to.equal(38);
+    expect(occupancyRepo.returnAvailableRoomsByType('22/10/2019', 'single room').length).to.equal(64);
   });
 
   it('Should be able to return the date with the most available rooms', function () {
