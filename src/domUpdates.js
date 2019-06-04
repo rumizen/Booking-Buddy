@@ -69,6 +69,10 @@ export default {
     $('#rooms-avail-date').text(occupancyRepo.returnMostAvailableDate());
   },
 
+  toggleElement(element) {
+    $(element).prop('disabled', false);
+  },
+
 
 
   popCustomerSearch(userRepo) {
@@ -94,6 +98,50 @@ export default {
     this.toggleCustomerTabs(roomService, booking, date);
   },
 
+  toggleRoomSplash() {
+    $('#room-splash').toggle('fast');
+  },
+
+  popAvailableRooms(date, occupancyRepo) {
+    $('.splash-rooms-box').empty();
+    const availRooms = occupancyRepo.returnAvailableRooms(date);
+    if (availRooms.length > 0) {
+      availRooms.forEach(room => {
+        $('.splash-rooms-box').prepend(`
+          <div>
+            <ul>
+              <li>Type: <span>${room.roomType}</span></li>
+              <li>Beds: <span>${room.numBeds}</span></li>
+              <li>Bed size: <span>${room.bedSize}</span></li>
+              <li>Bidet: <span>${room.bidet ? 'Yes' : 'No'}</span></li>
+            </ul>
+            <img src="images/single.jpg">
+          </div>
+        `);
+      });
+    }
+  },
+
+  popAvailableRoomsByType(date, type, occupancyRepo) {
+    $('.splash-rooms-box').empty();
+    const availRooms = occupancyRepo.returnAvailableRoomsByType(date, type);
+    if (availRooms.length > 0) {
+      availRooms.forEach(room => {
+        $('.splash-rooms-box').prepend(`
+          <div>
+            <ul>
+              <li>Type: <span>${room.roomType}</span></li>
+              <li>Beds: <span>${room.numBeds}</span></li>
+              <li>Bed size: <span>${room.bedSize}</span></li>
+              <li>Bidet: <span>${room.bidet ? 'Yes' : 'No'}</span></li>
+            </ul>
+            <img src="images/single.jpg">
+          </div>
+        `);
+      });
+    }
+  },
+
   toggleCustomerTabs(roomService, booking, date) {
     $('.rooms').replaceWith(`
     <section id="tab-3" class="tab-content rooms-customer">
@@ -105,7 +153,7 @@ export default {
           </div>
           <div class="rooms-customer-book-btn">
             <p hidden id="rooms-customer-booked-message">Guest has a booking today!</p>
-            <button id="rooms-customer-book-btn">New Booking</button>
+            <button class="rooms-customer-book-btn">New Booking</button>
           </div>
         </article>
       <div>
@@ -128,8 +176,9 @@ export default {
           <form>
             <label for="room-service-by-date">Total spent for:</label>
             <input type="date" id="room-service-by-date"/>
-            <button>Go</button>
+            <button class="room-service-btn">Go</button>
           </form>
+          <p>$<span id="daily-total-num"></span></p>
         </article>  
       </div>
     </section>
@@ -164,13 +213,18 @@ export default {
         $('.order-history-box').prepend(`
           <div class="guest-room-service append-block">
             <p>Date: <span class="append-block-left">${roomService.date}</span></p>
-            <p>Cost: <span class="append-block-right">${roomService.totalCost}</span></p>
+            <p>Cost: <span class="append-block-right">$${roomService.totalCost}</span></p>
           </div>
         `);
       });
     } else {
       $('#no-room-service-message').toggle();
     }
+  },
+
+  popRoomServiceDailyTotal(roomService, date) {
+    console.log(date);
+    $('#daily-total-num').text(roomService.returnDailyTotalSpent(date));
   },
 
   checkNewBookingBtn(booking, date) {

@@ -5,6 +5,10 @@ import './images/banknote.svg';
 import './images/bed.svg';
 import './images/user.svg';
 import './images/book.svg';
+import './images/suite.jpg';
+import './images/junior-suite.jpg';
+import './images/residential-suite.jpg';
+import './images/single.jpg';
 import domUpdates from './domUpdates.js';
 import fetch from 'cross-fetch';
 import FinanceRepo from './FinanceRepo';
@@ -77,13 +81,14 @@ $( document ).ready(function() {
     domUpdates.popOrdersList(returnToday(), roomServiceRepo);
     domUpdates.popRoomsTab(occupancyRepo, bookingRepo);
 
-    function returnDateSearch(e) {
-      e.preventDefault();
-      const dateValues = $('#orders-by-date').val().split('-');
-      domUpdates.popOrdersList(dateValues.reverse().join('/'), roomServiceRepo);
+    function returnDateSearch(element) {
+      return $(element).val().split('-');
     };
 
-    $('#date-search-button').click(returnDateSearch);
+    function popOrdersList(e) {
+      e.preventDefault();
+      domUpdates.popOrdersList(returnDateSearch('#orders-by-date').reverse().join('/'), roomServiceRepo);
+    };
 
     function returnCustomerSearch() {
       if ($('#customer-search').val() !== '') {
@@ -101,7 +106,7 @@ $( document ).ready(function() {
         const booking = bookingRepo.returnBooking(returnGuestId(name));
         domUpdates.popSelectedCustomer(guest, roomService, booking, returnToday());
       }
-    }
+    };
 
     function createNewCustomer(e) {
       e.preventDefault();
@@ -111,11 +116,61 @@ $( document ).ready(function() {
       const booking = bookingRepo.returnBooking(returnGuestId(name));
       domUpdates.popSelectedCustomer(newGuest, roomService, booking, returnToday());
       domUpdates.toggleNewCustomerSplash();
-    }
+    };
 
     function returnGuestId(name) {
       return userRepo.returnUser(name).id;
+    };
+
+    function roomServiceButton(e) {
+      e.preventDefault();
+      if ($(e.target).hasClass('room-service-btn')) {
+        const userId = returnGuestId($('#header-selected-customer').text());
+        const roomService = roomServiceRepo.returnUserRoomService(userId);
+        const parsedDate = $('#room-service-by-date').val().split('-');
+        domUpdates.popRoomServiceDailyTotal(roomService, parsedDate.reverse().join('/'));
+      }
+    };
+
+    function newBookButton(e) {
+      e.preventDefault();
+      if ($(e.target).hasClass('rooms-customer-book-btn')) {
+        domUpdates.toggleRoomSplash();
+        domUpdates.popAvailableRooms(returnToday(), occupancyRepo);
+      }
+    };
+
+    function cancelBookButton(e) {
+      e.preventDefault();
+      if ($(e.target).hasClass('splash-rooms-cancel-btn')) {
+        domUpdates.toggleRoomSplash();
+      }
+    };
+
+    function roomDateButton(e) {
+      e.preventDefault();
+      if ($(e.target).hasClass('room-date-splash-btn')) {
+        domUpdates.popAvailableRooms(returnDateSearch('#splash-room-date-input').reverse().join('/'), occupancyRepo);
+        domUpdates.toggleElement('.splash-room-type-btn');
+        domUpdates.toggleElement('#room-select');
+      }
+    };
+
+    function roomTypeButton(e) {
+      e.preventDefault();
+      if ($(e.target).hasClass('splash-room-type-btn')) {
+        domUpdates.popAvailableRoomsByType(returnDateSearch('#splash-room-date-input').reverse().join('/'), $('#room-select').val(), occupancyRepo);
+      }
+    };
+
+    function cancelNewCustomer(e) {
+      e.preventDefault();
+      if ($(e.target).hasClass('new-customer-cancel-btn')) {
+        domUpdates.toggleNewCustomerSplash();
+      }
     }
+
+    $('#date-search-button').click(popOrdersList);
 
     $('#customer-search').on('keyup', returnCustomerSearch);
 
@@ -125,7 +180,14 @@ $( document ).ready(function() {
 
     $('#new-customer-splash-btn').click(createNewCustomer);
 
-    
+    $('.container').click(roomServiceButton);
 
+    $(document).click(newBookButton);
+    $(document).click(cancelBookButton);
+    $(document).click(cancelNewCustomer);
+    $(document).click(roomDateButton);
+    $(document).click(roomTypeButton);
+
+    
   }, 500);
 });

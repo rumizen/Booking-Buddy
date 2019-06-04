@@ -11,7 +11,75 @@
         <label>Enter name: </label>
         <input id="new-customer-input" type="text" placeholder="Guest name"/>
         <button id="new-customer-splash-btn">Create</button>
+        <button class="new-customer-cancel-btn">Cancel</button>
       </form>
+    </div>
+    <div hidden class="splash" id="room-splash">
+      <h2>Search Available Rooms</h2>
+      <form class="room-splash-date-form">
+        <input id="splash-room-date-input" type="date"/>
+        <button class="room-date-splash-btn">Go</button>
+      </form>
+      <form class="room-splash-type-form">
+        <select disabled id="room-select">
+          <option value="">--Choose room type--</option>
+          <option value="suite">suite</option>
+          <option value="residential suite">residential suite</option>
+          <option value="junior suite">junior suite</option>
+          <option value="single room">single room</option>
+        </select>
+        <button disabled class="splash-room-type-btn">Go</button>
+      </form>
+      <article class="splash-rooms-box">
+        <!-- <div>
+          <ul>
+            <li>Type: <span></span></li>
+            <li>Beds: <span></span></li>
+            <li>Bed sizes: <span></span></li>
+            <li>Bidet: <span></span></li>
+          </ul>
+          <img src="images/suite.jpg">
+        </div>
+        <div>
+          <ul>
+            <li>Type: <span></span></li>
+            <li>Number of beds: <span></span></li>
+            <li>Bed sizes: <span></span></li>
+            <li>Bidet: <span></span></li>
+          </ul>
+          <img src="images/single.jpg">
+        </div>
+        <div>
+          <ul>
+            <li>Type: <span></span></li>
+            <li>Number of beds: <span></span></li>
+            <li>Bed sizes: <span></span></li>
+            <li>Bidet: <span></span></li>
+          </ul>
+          <img src="images/junior-suite.jpg">
+        </div>
+        <div>
+          <ul>
+            <li>Type: <span></span></li>
+            <li>Number of beds: <span></span></li>
+            <li>Bed sizes: <span></span></li>
+            <li>Bidet: <span></span></li>
+          </ul>
+          <img src="images/junior-suite.jpg">
+        </div>
+        <div>
+          <ul>
+            <li>Type: <span></span></li>
+            <li>Number of beds: <span></span></li>
+            <li>Bed sizes: <span></span></li>
+            <li>Bidet: <span></span></li>
+          </ul>
+          <img src="images/junior-suite.jpg">
+        </div> -->
+      </article>
+      <div class="cancel-btn-div">
+        <button class="splash-rooms-cancel-btn">Cancel</button>
+      </div>
     </div>
     <header>
       <h1>BOOKING<span>BUDDY</span><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
@@ -125,16 +193,6 @@
           <h3>Most Available Date</h3>
           <p id="rooms-avail-date"></p>
         </article>
-        <!-- <article class="room-type-select">
-          <p>Sort by Room Type:</p>
-          <select id="room-select">
-            <option value="">--Choose room type--</option>
-            <option value="suite">suite</option>
-            <option value="residential">residential suite</option>
-            <option value="junior">junior suite</option>
-            <option value="single">single room</option>
-          </select>
-        </article> -->
       </section>
       <section id="tab-4" class="tab-content customer">
         <article class="customer-search search-bar">
@@ -146,7 +204,7 @@
         <button id="create-new-guest-btn"><span> New Guest</span></button>
         <article class="customer-user-results">
         </article>
-      </section>  
-    </section>
+      </section>
+    </div>
   </body>
 </html>
