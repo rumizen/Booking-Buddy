@@ -108,8 +108,9 @@ export default {
     if (availRooms.length > 0) {
       availRooms.forEach(room => {
         $('.splash-rooms-box').prepend(`
-          <div>
+          <div class="book-room">
             <ul>
+              <li>Number: <span class="room-num">${room.number}</span></li>
               <li>Type: <span>${room.roomType}</span></li>
               <li>Beds: <span>${room.numBeds}</span></li>
               <li>Bed size: <span>${room.bedSize}</span></li>
@@ -128,8 +129,9 @@ export default {
     if (availRooms.length > 0) {
       availRooms.forEach(room => {
         $('.splash-rooms-box').prepend(`
-          <div>
+          <div class="book-room">
             <ul>
+              <li>Number: <span class="room-num">${room.number}</span></li>
               <li>Type: <span>${room.roomType}</span></li>
               <li>Beds: <span>${room.numBeds}</span></li>
               <li>Bed size: <span>${room.bedSize}</span></li>
@@ -189,7 +191,7 @@ export default {
   },
 
   popBookingHistory(booking) {
-    $('.rooms-customer-booking-history').html('');
+    $('.rooms-customer-booking-history').empty();
     const bookingHist = booking.returnAllBookings();
     if (bookingHist.length > 0) {
       bookingHist.forEach(booking => {

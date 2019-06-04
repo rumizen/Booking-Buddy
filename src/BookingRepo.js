@@ -10,6 +10,14 @@ class BookingRepo {
     return new Booking(userBookingData);
   }
 
+  createBooking(id, date, roomNumber) {
+    if (date !== '') {
+      this.data.bookings.push({userID: id, date: date, roomNumber: roomNumber});
+    } else {
+      this.data.bookings.push({ userID: id, date: new Date().toLocaleDateString('en-GB'), roomNumber: roomNumber });
+    };
+  }
+
   returnModeBookingDate() {
     const dateTally = this.data.bookings.reduce((final, booking) => {
       !final[booking.date] ? final[booking.date] = 1 : final[booking.date]++;

@@ -173,6 +173,14 @@ body{
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       width: 90%;
       padding: 10px 25px;
+      &:hover{
+      cursor: pointer;
+      transform: scale(1.01);
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1), 0 12px 40px 0 rgba(0, 0, 0, 0.09);
+      }
+      &:active{
+        background-color: $secondary-color;
+      }
       img{
         height: 150px;
         width: 150px;
@@ -189,6 +197,7 @@ body{
     }
   }
 }
+
 
 /*--------------------Header--------------------*/
 
@@ -751,7 +760,7 @@ article.most-available-date{
   .rooms-customer-booking-history{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     border-radius: 2px;
     height: 400px;
@@ -780,6 +789,7 @@ article.most-available-date{
       }
     }
   }
+
   .rooms-customer-book-btn{
     margin-top: 50px;
     text-align: center;
@@ -1091,6 +1101,21 @@ footer{
         font-size: 2em;
         font-weight: 100;
       }
+    }
+  }
+  .rooms-customer-div{
+    .rooms-customer-article{
+      .rooms-customer-booking-history{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        border-radius: 2px;
+        height: 300px;
+        padding: 30px;
+        width: 100%;
+        overflow-y: scroll;
+  }
     }
   }
 }

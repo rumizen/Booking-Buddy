@@ -168,6 +168,19 @@ $( document ).ready(function() {
       if ($(e.target).hasClass('new-customer-cancel-btn')) {
         domUpdates.toggleNewCustomerSplash();
       }
+    };
+
+    function makeBooking(e) {
+      e.preventDefault();
+      if ($(e.target).hasClass('book-room')) {
+        const name = $('#header-selected-customer').text();
+        const date = returnDateSearch('#splash-room-date-input').reverse().join('/');
+        const roomNumber = $(e.target).find('.room-num').text();
+        bookingRepo.createBooking(returnGuestId(name), date, roomNumber);
+        const booking = bookingRepo.returnBooking(returnGuestId(name));
+        domUpdates.popBookingHistory(booking);
+        domUpdates.toggleRoomSplash();
+      }
     }
 
     $('#date-search-button').click(popOrdersList);
@@ -187,6 +200,7 @@ $( document ).ready(function() {
     $(document).click(cancelNewCustomer);
     $(document).click(roomDateButton);
     $(document).click(roomTypeButton);
+    $(document).click(makeBooking);
 
     
   }, 500);
