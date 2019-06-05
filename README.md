@@ -12,4 +12,4 @@ This was an assigned solo project for Front-End Mod 2 of Turing School of Softwa
 
 ![Customer select animation](https://imgur.com/Ua5jDxS.gif)
 
-
+![Booking a room](https://imgur.com/iQmm4JB.gif)
