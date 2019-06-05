@@ -8,4 +8,4 @@ This was an assigned solo project for Front-End Mod 2 of Turing School of Softwa
 
 ### Booking Buddy in Action
 
-![Selecting a customer](https://imgur.com/a/wWeHUMj.gif)
+![Selecting a customer](https://imgur.com/yzoCJD1.gif)
